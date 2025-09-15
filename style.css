@@ -1,0 +1,233 @@
+/* Definição de Cores e Fontes */
+:root {
+    --cor-principal: #d11a1a;
+    --cor-secundaria: #a80000;
+    --cor-texto: #333;
+    --cor-fundo: #f0f0f0;
+    --cor-branco: #fff;
+    --sombra-leve: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: var(--sombra-leve);
+}
+
+header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3em;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+nav {
+    background-color: var(--cor-principal);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li a {
+    color: var(--cor-branco);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 15px 25px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: var(--cor-secundaria);
+}
+
+main {
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.secao-conteudo {
+    background-color: var(--cor-branco);
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--sombra-leve);
+}
+
+.secao-conteudo h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2em;
+    color: var(--cor-principal);
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 0;
+    letter-spacing: 1px;
+}
+
+.membro-elite {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding: 15px;
+    border-left: 5px solid var(--cor-principal);
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.membro-elite img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+    border: 3px solid var(--cor-secundaria);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.membro-info {
+    flex-grow: 1;
+}
+
+.membro-info h3 {
+    font-size: 1.5em;
+    color: var(--cor-principal);
+    margin: 0;
+}
+
+.membro-info p {
+    margin: 5px 0 0;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+    margin-top: 30px;
+}
+
+/* Estilos para a Janela Flutuante (Modal) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; /* Inicia oculta */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--cor-branco);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    text-align: center;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-content h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--cor-principal);
+    font-size: 2em;
+    margin-top: 0;
+    border-bottom: 2px solid var(--cor-principal);
+    padding-bottom: 10px;
+}
+
+.modal-content .close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-content .close-button:hover {
+    color: var(--cor-secundaria);
+}
+
+.pokemon-list {
+    text-align: left;
+}
+
+.pokemon-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.pokemon-item:last-child {
+    border-bottom: none;
+}
+
+.pokemon-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--cor-secundaria);
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.pokemon-moves {
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 75px; /* Alinha com o texto */
+    margin-top: 5px;
+}
+
+/* Estilos para a Descrição do Pokémon no Modal */
+.pokemon-description {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #666;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Cores para os Tipos de Ataque */
+.tipo-fisico {
+    color: #a80000;
+}
+
+.tipo-especial {
+    color: #4b4b9b;
+}
+
+.tipo-status {
+    color: #33a84f;
+}
+
+.pokemon-moves li {
+    font-size: 0.9em;
+    display: block;
+    margin-bottom: 5px;
+}
