@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Grande Campeão</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Os Campeões e a Elite dos 4</h1>
+        <img src="images/logo_elite.png" alt="Logo da Elite dos 4" class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="regiao.html">Regiões</a></li>
+                <li><a href="campeoes.html">O Campeão</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="secao-conteudo">
+            <h2 style="text-align: center; font-size: 3em; color: var(--cor-principal);">O Grande Campeão</h2>
+            <div style="text-align: center; margin-top: 30px;">
+                <img src="images/campeao.png" alt="Foto do Campeão" style="width: 200px; height: 200px; border-radius: 50%; border: 5px solid var(--cor-principal); box-shadow: 0 0 20px var(--cor-principal);">
+                <h3 style="font-size: 2em; color: var(--cor-principal); margin-top: 15px;">Izune Shikigame</h3>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: justify;">
+                <h3 style="color: var(--cor-principal); border-bottom: 2px solid var(--cor-secundaria); padding-bottom: 5px;">A Jornada</h3>
+                <p>
+                   No mundo dos Pokémon, onde crianças de dez anos partem em jornadas para se tornarem mestres, poucas histórias são tão singulares quanto a de Izune Shikigame. Nascido na pacata cidade de Littleroot, na região de Hoenn, Izune já se destacava desde cedo. Seus cabelos eram de um branco puro como a neve do Monte Coronet, e seus olhos continham uma tempestade silenciosa de cores: um era de um preto profundo como o abismo do oceano, o outro, de um violeta enigmático como o céu ao anoitecer. Com um estilo casual e um olhar que parecia enxergar a alma dos Pokémon, ele não sonhava apenas em ser um campeão; ele sonhava em se tornar uma lenda viva.
+                </p>
+                <p>
+                    Desde a infância em Littleroot Town, Izune Shikigame sentia que não era como os outros. Seus olhos de cores distintas não lhe davam apenas uma aparência marcante, mas pareciam lhe conceder uma percepção única sobre o mundo Pokémon – uma conexão inata com o poder e a alma que habitavam em cada criatura. Izune partiu em sua jornada não por um simples desejo de colecionar insígnias, mas por uma necessidade de encontrar seu próprio lugar no mundo, provando que a verdadeira força de um treinador reside na profundidade de seu vínculo e na coragem de se conectar com o incompreendido. Sua motivação é a busca incessante por esse equilíbrio, a vontade de se tornar uma lenda viva ao formar uma equipe que seja um reflexo de seu próprio espírito: única, poderosa e perfeitamente sintonizada com as maiores forças da natureza.
+                </p>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <h3 style="color: var(--cor-principal); border-bottom: 2px solid var(--cor-secundaria); padding-bottom: 5px;">Time de Elite</h3>
+                <p>
+                    A equipe que o acompanhou nessa jornada é um reflexo de sua versatilidade e poder. Cada Pokémon foi escolhido a dedo e treinado para ser uma força da natureza. Clique em cada um para saber mais!
+                </p>
+                
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 20px;">
+                    <div class="pokemon-campeao" id="campeao-pokemon1">
+                        <img src="images/pokemons/blaziken.png" alt="Foto do Pokémon 1">
+                        <p>Blaziken</p>
+                    </div>
+                    <div class="pokemon-campeao" id="campeao-pokemon2">
+                        <img src="images/pokemons/dragapult.png" alt="Foto do Pokémon 2">
+                        <p>Dragapult </p>
+                    </div>
+                    <div class="pokemon-campeao" id="campeao-pokemon3">
+                        <img src="images/pokemons/kyogre.png" alt="Foto do Pokémon 3">
+                        <p>kyogre</p>
+                    </div>
+                    <div class="pokemon-campeao" id="campeao-pokemon4">
+                        <img src="images/pokemons/xerneas.png" alt="Foto do Pokémon 4">
+                        <p>Xerneas</p>
+                    </div>
+                    <div class="pokemon-campeao" id="campeao-pokemon5">
+                        <img src="images/pokemons/giratina.png" alt="Foto do Pokémon 5">
+                        <p>Giratina</p>
+                    </div>
+                    <div class="pokemon-campeao" id="campeao-pokemon6">
+                        <img src="images/pokemons/shuckle.png" alt="Foto do Pokémon 6">
+                        <p>Shuckle </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 - Elite dos 4 Pokémon | Desenvolvido para Aula de Programação Web</p>
+    </footer>
+    
+    <div class="modal-overlay" id="modalPokemonOverlay">
+        <div class="modal-content">
+            <span class="close-button" id="closePokemonModal">&times;</span>
+            <div style="text-align: center;">
+                <img id="pokemonImg" src="" alt="Foto do Pokémon" style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--cor-principal); margin-bottom: 10px;">
+                <h3 id="pokemonName"></h3>
+                <p id="pokemonCaptureLocation" style="font-weight: bold; color: var(--cor-secundaria); font-style: italic;"></p>
+                <p id="pokemonSpecialForm" style="font-weight: bold; color: var(--cor-principal); margin-top: 5px;"></p>
+            </div>
+            <div id="pokemonStory">
+                <h4 style="color: var(--cor-principal); margin-top: 20px; border-bottom: 1px solid var(--cor-secundaria); padding-bottom: 5px;">A História da Captura</h4>
+                <p id="pokemonCaptureStory"></p>
+            </div>
+            <div id="pokemonMovesList">
+                <h4 style="color: var(--cor-principal); margin-top: 20px; border-bottom: 1px solid var(--cor-secundaria); padding-bottom: 5px;">Ataques:</h4>
+                <ul class="pokemon-moves" id="pokemonMoves"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados do time do Campeão
+        const campeaoTime = {
+        'campeao-pokemon1': {
+            nome: 'Blaziken',
+            historia: 'Este Blaziken foi o primeiro Pokémon capturado pelo Campeão, ainda como um Torchic, na região de Hoenn. Juntos, eles enfrentaram inúmeras batalhas e evoluíram, formando um laço inquebrável que se tornou a base de todo o seu time. Ele é o verdadeiro ás da equipe, presente em todas as grandes vitórias, utilizando seus poderosos golpes de fogo e luta.',
+            localCaptura: 'Hoenn (como Torchic)',
+            formaEspecial: 'Mega Evolução',
+            ataques: [
+                { nome: 'Blaze Kick', tipo: 'Físico' },
+                { nome: 'Brave Bird', tipo: 'Físico' },
+                { nome: 'Sky Uppercut', tipo: 'Físico' },
+                { nome: 'Flamethrower', tipo: 'Especial' }
+            ]
+        },
+        'campeao-pokemon2': {
+            nome: 'Dragapult',
+            historia: 'Após conquistar Hoenn, o campeão sentiu que seu caminho estava apenas começando. Ele viajou para a região de Galar, atraído por contos de Pokémon dracônicos antigos. Foi em uma noite de neblina, explorando as ruínas de uma torre ancestral em Crown Tundra, que ele ouviu um choro baixo e fantasmagórico. Escondido em uma fenda, ele encontrou um pequeno e tímido Dreepy, um Pokémon do tipo Dragão e Fantasma que era conhecido por sua natureza assustada.',
+            localCaptura: 'Crown Tundra (como Dreepy)',
+            formaEspecial: 'Tera Type (Gelo)',
+            ataques: [
+                { nome: 'Stone Edge', tipo: 'Físico' },
+                { nome: 'Crunch', tipo: 'Físico' },
+                { nome: 'Earthquake', tipo: 'Físico' },
+                { nome: 'Hyper Beam', tipo: 'Especial' }
+            ]
+        },
+        'campeao-pokemon3': {
+            nome: 'Kyogre',
+            historia: 'Kyogre, o Pokémon lendário que se pensava ter sumido. O campeão o encontrou no fundo do mar, adormecido, perto de uma ruína esquecida. Kyogre, ao se despertar, o testou com uma batalha intensa, e ao ser derrotado, reconheceu a força e a bondade do campeão, juntando-se ao seu time.',
+            localCaptura: 'Fundo do Mar (Região de Hoenn)',
+            formaEspecial: 'Forma Primordial',
+            ataques: [
+                { nome: 'Origin Pulse', tipo: 'Especial' },
+                { nome: 'Hydro Pump', tipo: 'Especial' },
+                { nome: 'Thunder', tipo: 'Especial' },
+                { nome: 'Blizzard', tipo: 'Especial' }
+            ]
+        },
+        'campeao-pokemon4': {
+            nome: 'Xerneas',
+            historia: 'Xerneas, o Pokémon da vida, se juntou ao campeão em uma das suas jornadas pela região de Kalos. O campeão o encontrou em uma floresta escura, onde Xerneas estava a ponto de entrar em seu modo árvore. O campeão o convenceu a se juntar ao seu time, para que ele pudesse usar o seu poder para proteger o mundo.',
+            localCaptura: 'Floresta de Kalos',
+            formaEspecial: 'Modo Poder',
+            ataques: [
+                { nome: 'Geomancy', tipo: 'Status' },
+                { nome: 'Moonblast', tipo: 'Especial' },
+                { nome: 'Thunderbolt', tipo: 'Especial' },
+                { nome: 'Focus Blast', tipo: 'Especial' }
+            ]
+        },
+        'campeao-pokemon5': {
+            nome: 'Giratina',
+            historia: 'Enquanto explorava as ruínas do mundo invertido, o campeão encontrou um portal. Através dele, encontrou o Pokémon lendário Giratina. Após uma longa e intensa batalha, Giratina o reconheceu como um treinador digno e aceitou se juntar ao seu time. Giratina o acompanha em sua jornada, protegendo-o com seu poder.',
+            localCaptura: 'Mundo Invertido',
+            formaEspecial: 'Forma Original',
+            ataques: [
+                { nome: 'Shadow Force', tipo: 'Físico' },
+                { nome: 'Aura Sphere', tipo: 'Especial' },
+                { nome: 'Dragon Claw', tipo: 'Físico' },
+                { nome: 'Shadow Ball', tipo: 'Especial' }
+            ]
+        },
+        'campeao-pokemon6': {
+            nome: 'Shuckle',
+            historia: 'Este Shuckle foi um presente inesperado de Luis, seu antigo rival, num gesto de respeito e reconhecimento ao final de sua jornada competitiva. Com uma defesa e defesa especial que beiram o absoluto, ele se tornou a muralha impenetrável do time de Izune. Sua função não é a da força bruta, mas sim a da resistência estratégica, capaz de esgotar a paciência e a energia dos oponentes mais ferozes, criando a abertura perfeita para uma virada decisiva.',
+            localCaptura: 'Presente ',
+            formaEspecial: 'N/A',
+            ataques: [
+                { nome: 'Shell Smash', tipo: 'Status' },
+                { nome: 'Toxic', tipo: 'Físico' },
+                { nome: 'Rest', tipo: 'Especial' },
+                { nome: 'Stick Web', tipo: 'Físico' }
+            ]
+                }
+        };
+
+        const pokemonElements = document.querySelectorAll('.pokemon-campeao');
+        const modalPokemonOverlay = document.getElementById('modalPokemonOverlay');
+        const closePokemonModalButton = document.getElementById('closePokemonModal');
+        const pokemonNameElement = document.getElementById('pokemonName');
+        const pokemonCaptureLocationElement = document.getElementById('pokemonCaptureLocation');
+        const pokemonSpecialFormElement = document.getElementById('pokemonSpecialForm');
+        const pokemonMovesElement = document.getElementById('pokemonMoves');
+        const pokemonImgElement = document.getElementById('pokemonImg');
+        const pokemonCaptureStoryElement = document.getElementById('pokemonCaptureStory');
+
+
+        pokemonElements.forEach(pokemonDiv => {
+            pokemonDiv.addEventListener('click', () => {
+                const pokemonId = pokemonDiv.id;
+                abrirPokemonModal(pokemonId);
+            });
+        });
+
+        closePokemonModalButton.addEventListener('click', fecharPokemonModal);
+
+        function abrirPokemonModal(pokemonId) {
+            const pokemonData = campeaoTime[pokemonId];
+            if (!pokemonData) {
+                console.error('Dados do Pokémon não encontrados:', pokemonId);
+                return;
+            }
+
+            // Popula o modal com as novas informações
+            pokemonNameElement.innerText = pokemonData.nome;
+            pokemonCaptureLocationElement.innerText = `Capturado em: ${pokemonData.localCaptura}`;
+            pokemonSpecialFormElement.innerText = `Forma Especial: ${pokemonData.formaEspecial}`;
+            pokemonImgElement.src = `images/pokemons/${pokemonData.nome.toLowerCase()}.png`;
+            pokemonCaptureStoryElement.innerText = pokemonData.historia;
+
+            pokemonMovesElement.innerHTML = '';
+            pokemonData.ataques.forEach(ataque => {
+                const li = document.createElement('li');
+                const spanTipo = document.createElement('span');
+                
+                if (ataque.tipo === 'Físico') {
+                    spanTipo.classList.add('tipo-fisico');
+                } else if (ataque.tipo === 'Especial') {
+                    spanTipo.classList.add('tipo-especial');
+                } else if (ataque.tipo === 'Status') {
+                    spanTipo.classList.add('tipo-status');
+                }
+                
+                spanTipo.innerText = `[${ataque.tipo}]`;
+                li.innerHTML = `${spanTipo.outerHTML} ${ataque.nome}`;
+                pokemonMovesElement.appendChild(li);
+            });
+
+            modalPokemonOverlay.style.display = 'flex';
+        }
+
+        function fecharPokemonModal() {
+            modalPokemonOverlay.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
