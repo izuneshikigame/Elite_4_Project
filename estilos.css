@@ -1,0 +1,371 @@
+/* Definição de Cores e Fontes - Tema Ouro e Preto */
+:root {
+    --cor-principal: #FFD700; /* Ouro */
+    --cor-secundaria: #8B4513; /* Marrom para bordas e acentos */
+    --cor-fundo: #1a1a1a; /* Preto quase absoluto */
+    --cor-fundo-secundaria: #252525; /* Preto mais claro para seções */
+    --cor-texto-claro: #f5f5f5; /* Cinza claro para leitura */
+    --cor-texto-escuro: #ccc;
+    --sombra-leve: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Parte do Login, Cadastro, Recuperar senha */
+.ho{
+    height: 76vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 36px;
+    cursor: pointer;
+    user-select: none;
+}
+/* */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-claro);
+    /* Adicionando um fundo animado */
+    background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png');
+    animation: backgroundMove 20s linear infinite alternate;
+}
+
+@keyframes backgroundMove {
+    from { background-position: 0 0; }
+    to { background-position: 100% 100%; }
+}
+
+header {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-claro);
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: var(--sombra-leve);
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 150px;
+    height: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+    opacity: 1;
+}
+
+header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5em;
+    margin: 0;
+    letter-spacing: 3px;
+    color: var(--cor-principal);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+header h1:hover {
+    transform: scale(1.05);
+}
+
+nav {
+    background-color: #2b2b2b;
+    border-bottom: 2px solid var(--cor-principal);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.es{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: left;
+}
+
+
+nav ul li a {
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 15px 25px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: var(--cor-principal);
+    color: var(--cor-fundo);
+}
+
+main {
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.secao-conteudo {
+    background-color: var(--cor-fundo-secundaria);
+    margin-bottom: 20px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--sombra-leve);
+    border: 1px solid #444;
+    transition: box-shadow 0.3s ease;
+}
+
+.secao-conteudo:hover {
+    box-shadow: 0 0 15px var(--cor-principal);
+}
+
+.secao-conteudo h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5em;
+    color: var(--cor-principal);
+    border-bottom: 2px solid var(--cor-secundaria);
+    padding-bottom: 8px;
+    margin-top: 0;
+    letter-spacing: 2px;
+}
+
+.membro-elite {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    padding: 15px;
+    border-left: 5px solid var(--cor-principal);
+    border-radius: 5px;
+    background-color: #2b2b2b;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.membro-elite:hover {
+    background-color: #3a3a3a;
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+.membro-elite img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+    border: 3px solid var(--cor-principal);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.membro-info {
+    flex-grow: 1;
+}
+
+.membro-info h3 {
+    font-size: 1.6em;
+    color: var(--cor-principal);
+    margin: 0;
+}
+
+.membro-info p {
+    margin: 5px 0 0;
+    color: var(--cor-texto-escuro);
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-claro);
+    margin-top: 30px;
+    border-top: 2px solid var(--cor-secundaria);
+}
+
+/* Estilos para a Janela Flutuante (Modal) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--cor-fundo-secundaria);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    text-align: center;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 2px solid var(--cor-principal);
+    animation: modalFadeIn 0.5s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-content h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--cor-principal);
+    font-size: 2.2em;
+    margin-top: 0;
+    border-bottom: 2px solid var(--cor-secundaria);
+    padding-bottom: 10px;
+}
+
+.modal-content .close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--cor-secundaria);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-content .close-button:hover {
+    color: var(--cor-principal);
+}
+
+.pokemon-list {
+    text-align: left;
+}
+
+.pokemon-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.pokemon-item:nth-child(1) { animation-delay: 0.1s; }
+.pokemon-item:nth-child(2) { animation-delay: 0.2s; }
+.pokemon-item:nth-child(3) { animation-delay: 0.3s; }
+.pokemon-item:nth-child(4) { animation-delay: 0.4s; }
+.pokemon-item:nth-child(5) { animation-delay: 0.5s; }
+.pokemon-item:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.pokemon-item:last-child {
+    border-bottom: none;
+}
+
+.pokemon-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--cor-principal);
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.pokemon-description {
+    font-size: 0.9em;
+    font-style: italic;
+    color: var(--cor-texto-escuro);
+    margin: 5px 0 10px;
+    text-align: left;
+}
+
+.pokemon-moves {
+    font-size: 0.9em;
+    color: var(--cor-texto-escuro);
+    margin-left: 75px;
+    margin-top: 5px;
+}
+
+.pokemon-moves li {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.pokemon-moves li:last-child {
+    margin-bottom: 0;
+}
+
+/* Cores para os Tipos de Ataque */
+.tipo-fisico {
+    color: #f7776b; /* Vermelho claro */
+}
+
+.tipo-especial {
+    color: #6a95f7; /* Azul claro */
+}
+
+.tipo-status {
+    color: #8be581; /* Verde claro */
+}
+
+/* Novos estilos para o modal do Campeão */
+#pokemonCaptureStory {
+    text-align: justify; /* Justifica o texto da história */
+    margin-top: 15px;
+    color: var(--cor-texto-claro);
+    line-height: 1.5;
+}
+
+#pokemonMovesList h4 {
+    text-align: center; /* Centraliza o título dos ataques */
+    margin-bottom: 15px;
+}
+
+#pokemonMoves {
+    list-style-type: none;
+    padding: 0;
+    margin: auto;
+    text-align: center; /* Centraliza a lista inteira */
+}
+
+#pokemonMoves li {
+    margin-left: 0;
+    display: inline-block; /* Faz com que os itens fiquem em linha */
+    text-align: left; /* Alinha o texto dentro do item */
+}
+
+/* Adicione este novo estilo ao seu arquivo style.css */
+.modal-overlay.is-visible {
+    display: flex;
+}
