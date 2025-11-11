@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montador de Times - Elite dos 4</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="estilos.css">
+    
+</head>
+<body>
+
+    <header>
+        <h1>Os CAMPEÕES E A ELITE DOS 4</h1>
+    </header>
+<nav>
+    <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="regiao.html">Regiões</a></li>
+                <li><a href="campeoes.html">Campeão</a></li>
+                <li><a href="perfil.html">Meu Perfil</a></li> 
+                <li><a href="Montador_de_Times.html">Montador de Times</a></li> 
+    </ul>
+</nav>
+    
+    <main class="container">
+        <section class="secao-conteudo">
+            <h2 id="builder-title">Criar Novo Time</h2>
+            <p id="loading-message">Carregando lista de Pokémon...</p>
+            
+            <div class="builder-form">
+                <div class="team-name-section">
+                    <label for="team-name-input">Nome do Time:</label>
+                    <input type="text" id="team-name-input" placeholder="Ex: Meu Time Kanto">
+                </div>
+                
+                <div id="team-display" class="team-display">
+                    </div>
+                
+                <div class="action-buttons">
+                    <button id="btn-save" disabled>Salvar Novo Time</button>
+                    <button id="btn-clear-builder">Limpar Campos</button>
+                </div>
+                
+                <p id="status-message"></p>
+            </div>
+        </section>
+
+        <template id="pokemon-card-template">
+            <div class="pokemon-card">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" 
+                     alt="Sprite do Pokémon" 
+                     class="pokemon-sprite">
+                <select class="pokemon-select">
+                    <option value="">Selecione...</option>
+                </select>
+            </div>
+        </template>
+        
+        <section class="secao-conteudo">
+            <h2>Meus Times Salvos</h2>
+            <div id="saved-teams-list">
+                <p id="no-teams-message">Nenhum time salvo ainda.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Elite dos 4 - Todos os direitos reservados.</p>
+    </footer>
+
+
+    <script>
+        /* --- JAVASCRIPT --- */
+        // (O JavaScript permanece o mesmo)
+        document.addEventListener('DOMContentLoaded', async () => {
+
+            const POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon';
+            const STORAGE_KEY = 'pokemonTeamsDB'; 
+            const POKEMON_COUNT = 6;
+
+            const teamDisplay = document.getElementById('team-display');
+            const template = document.getElementById('pokemon-card-template');
+            const loadingMessage = document.getElementById('loading-message');
+            const statusMessage = document.getElementById('status-message');
+            const saveButton = document.getElementById('btn-save');
+            const clearBuilderButton = document.getElementById('btn-clear-builder');
+            const teamNameInput = document.getElementById('team-name-input');
+            const builderTitle = document.getElementById('builder-title');
+            
+            const savedTeamsList = document.getElementById('saved-teams-list');
+            const noTeamsMessage = document.getElementById('no-teams-message');
+
+            let allPokemonNames = []; 
+            let pokemonSelectors = [];
+            let pokemonSprites = [];
+            let teamsDB = []; 
+            let currentEditingTeamId = null;
+
+            async function initializeTeamBuilder() {
+                try {
+                    createPokemonSlots();
+                    await fetchPokemonList();
+                    populateSelectors();
+                    loadTeamsFromStorage();
+                    renderSavedTeamsList();
+                    
+                    loadingMessage.style.display = 'none';
+                    saveButton.disabled = false;
+                } catch (error) {
+                    loadingMessage.textContent = 'Falha ao carregar Pokémon. Tente recarregar a página.';
+                    loadingMessage.style.color = '#dc3545'; // Vermelho
+                    console.error("Erro na inicialização:", error);
+                }
+            }
+
+            function createPokemonSlots() {
+                for (let i = 0; i < POKEMON_COUNT; i++) {
+                    const cardClone = template.content.cloneNode(true);
+                    const card = cardClone.querySelector('.pokemon-card');
+                    const select = card.querySelector('.pokemon-select');
+                    const sprite = card.querySelector('.pokemon-sprite');
+                    
+                    select.addEventListener('change', () => updatePokemonSprite(i, select.value));
+                    
+                    teamDisplay.appendChild(card);
+                    pokemonSelectors.push(select);
+                    pokemonSprites.push(sprite);
+                }
+            }
+
+            async function fetchPokemonList() {
+                const response = await fetch(`${POKEAPI_URL}?limit=1008`);
+                if (!response.ok) throw new Error('Erro na rede ao buscar Pokémon.');
+                const data = await response.json();
+                allPokemonNames = data.results.map(p => p.name);
+            }
+
+            function populateSelectors() {
+                const defaultOption = '<option value="">Selecione...</option>';
+                const optionsHTML = allPokemonNames.map(name => 
+                    `<option value="${name}">${name}</option>`
+                ).join('');
+                pokemonSelectors.forEach(select => {
+                    select.innerHTML = defaultOption + optionsHTML;
+                });
+            }
+
+            async function updatePokemonSprite(index, pokemonName) {
+                const spriteElement = pokemonSprites[index];
+                const pokeballIcon = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png';
+                if (!pokemonName) {
+                    spriteElement.src = pokeballIcon;
+                    return;
+                }
+                spriteElement.src = pokeballIcon; 
+                try {
+                    const response = await fetch(`${POKEAPI_URL}/${pokemonName}`);
+                    if (!response.ok) throw new Error('Pokémon não encontrado.');
+                    const data = await response.json();
+                    const spriteUrl = data.sprites.other['official-artwork']?.front_default || data.sprites.front_default;
+                    spriteElement.src = spriteUrl || pokeballIcon;
+                } catch (error) {
+                    console.error('Erro ao buscar sprite:', error);
+                    spriteElement.src = pokeballIcon;
+                }
+            }
+            
+            saveButton.addEventListener('click', () => {
+                const teamName = teamNameInput.value.trim();
+                const teamPokemons = pokemonSelectors.map(select => select.value);
+
+                if (!teamName) {
+                    showStatus('Por favor, dê um nome ao seu time.', '#dc3545'); // Vermelho
+                    teamNameInput.focus();
+                    return;
+                }
+
+                if (currentEditingTeamId) {
+                    const teamIndex = teamsDB.findIndex(team => team.id === currentEditingTeamId);
+                    if (teamIndex > -1) {
+                        teamsDB[teamIndex].name = teamName;
+                        teamsDB[teamIndex].team = teamPokemons;
+                        showStatus('Time atualizado com sucesso!', '#28a745'); // Verde
+                    }
+                } else {
+                    const newTeam = {
+                        id: Date.now().toString(),
+                        name: teamName,
+                        team: teamPokemons
+                    };
+                    teamsDB.push(newTeam);
+                    showStatus('Novo time salvo com sucesso!', '#28a745'); // Verde
+                }
+
+                saveTeamsToStorage(); 
+                renderSavedTeamsList();
+                clearBuilderForm(false);
+            });
+            
+            function loadTeamsFromStorage() {
+                const savedTeamsJSON = localStorage.getItem(STORAGE_KEY);
+                if (savedTeamsJSON) {
+                    teamsDB = JSON.parse(savedTeamsJSON);
+                }
+            }
+            
+            function saveTeamsToStorage() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(teamsDB));
+            }
+
+            function handleDeleteTeam(teamId) {
+                if (!confirm('Tem certeza que deseja excluir este time?')) {
+                    return;
+                }
+                
+                teamsDB = teamsDB.filter(team => team.id !== teamId);
+                
+                saveTeamsToStorage();
+                renderSavedTeamsList();
+                showStatus('Time excluído com sucesso.', 'var(--cor-secundaria)'); // Marrom
+                
+                if (currentEditingTeamId === teamId) {
+                    clearBuilderForm(false);
+                }
+            }
+            
+            function renderSavedTeamsList() {
+                savedTeamsList.innerHTML = ''; 
+
+                if (teamsDB.length === 0) {
+                    savedTeamsList.appendChild(noTeamsMessage);
+                    noTeamsMessage.style.display = 'block';
+                    return;
+                }
+                
+                noTeamsMessage.style.display = 'none';
+
+                teamsDB.forEach(team => {
+                    const card = document.createElement('div');
+                    card.className = 'saved-team-card';
+                    
+                    const pokemonListHTML = team.team.map(pkm => 
+                        `<li>${pkm || 'Vazio'}</li>`
+                    ).join('');
+
+                    card.innerHTML = `
+                        <div class="saved-team-card-info">
+                            <h3>${team.name}</h3>
+                            <ul class="saved-team-pokemon">
+                                ${pokemonListHTML}
+                            </ul>
+                        </div>
+                        <div class="saved-team-card-actions">
+                            <button class="btn-edit-team" data-id="${team.id}">Editar</button>
+                            <button class="btn-delete-team" data-id="${team.id}">Excluir</button>
+                        </div>
+                    `;
+                    savedTeamsList.appendChild(card);
+                });
+            }
+
+            function handleEditTeam(teamId) {
+                const team = teamsDB.find(t => t.id === teamId);
+                if (!team) return;
+
+                teamNameInput.value = team.name;
+                team.team.forEach((pokemonName, index) => {
+                    if (pokemonSelectors[index]) {
+                        pokemonSelectors[index].value = pokemonName;
+                        updatePokemonSprite(index, pokemonName);
+                    }
+                });
+
+                currentEditingTeamId = team.id;
+                
+                builderTitle.textContent = `Editando Time: ${team.name}`;
+                saveButton.textContent = 'Atualizar Time';
+                
+                document.querySelector('.secao-conteudo').scrollIntoView({ behavior: 'smooth' });
+            }
+
+            clearBuilderButton.addEventListener('click', () => clearBuilderForm(true));
+            
+            function clearBuilderForm(showMessage = true) {
+                teamNameInput.value = '';
+                pokemonSelectors.forEach((select, index) => {
+                    select.value = '';
+                    updatePokemonSprite(index, '');
+                });
+                
+                currentEditingTeamId = null;
+                builderTitle.textContent = 'Criar Novo Time';
+                saveButton.textContent = 'Salvar Novo Time';
+                
+                if (showMessage) {
+                    showStatus('Campos do construtor limpos.', 'var(--cor-principal)'); // Ouro
+                }
+            }
+
+            function showStatus(message, color) {
+                statusMessage.textContent = message;
+                statusMessage.style.color = color;
+                setTimeout(() => {
+                    statusMessage.textContent = '';
+                }, 3000);
+            }
+            
+            savedTeamsList.addEventListener('click', (event) => {
+                const target = event.target;
+                
+                if (target.classList.contains('btn-edit-team')) {
+                    const teamId = target.dataset.id;
+                    handleEditTeam(teamId);
+                }
+                
+                if (target.classList.contains('btn-delete-team')) {
+                    const teamId = target.dataset.id;
+                    handleDeleteTeam(teamId);
+                }
+            });
+
+            initializeTeamBuilder();
+        });
+    </script>
+
+</body>
+</html>
