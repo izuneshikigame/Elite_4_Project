@@ -369,3 +369,137 @@ footer {
 .modal-overlay.is-visible {
     display: flex;
 }
+
+/* ====================================================================
+   INÍCIO - ESTILOS ADICIONADOS PARA O MONTADOR DE TIMES
+====================================================================
+*/
+
+/* Estilizando os campos de formulário (input e select) */
+#team-name-input,
+.pokemon-select {
+    font-family: 'Roboto', sans-serif;
+    background-color: #333;
+    color: var(--cor-texto-claro);
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box; /* Garante que o padding não estoure a largura */
+}
+
+#team-name-input::placeholder {
+    color: var(--cor-texto-escuro);
+}
+
+.team-name-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.team-name-section label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5em;
+    color: var(--cor-principal);
+    letter-spacing: 1px;
+}
+
+/* Grid de Pokémon */
+.team-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.pokemon-card {
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    background-color: #2b2b2b; /* Mesmo fundo do .membro-elite */
+    transition: all 0.3s ease;
+}
+
+.pokemon-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.pokemon-sprite {
+    width: 96px;
+    height: 96px;
+    image-rendering: pixelated;
+    display: block;
+    margin: 0 auto 10px;
+    background-color: #444;
+    /* Estilo copiado do .membro-elite img */
+    border-radius: 50%;
+    border: 3px solid var(--cor-principal);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.pokemon-select {
+    text-transform: capitalize;
+}
+
+/* Botões de Ação Principais */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.action-buttons button {
+    font-family: 'Bebas Neue', sans-serif;
+    padding: 12px 25px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Botão Salvar (Ouro) */
+#btn-save {
+    background-color: var(--cor-principal);
+    color: var(--cor-fundo);
+}
+#btn-save:hover {
+    background-color: #fff;
+    color: var(--cor-fundo);
+    transform: scale(1.05);
+}
+
+/* Botão Limpar (Marrom) */
+#btn-clear-builder {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto-claro);
+}
+#btn-clear-builder:hover {
+    background-color: #a0522d; /* Marrom mais claro */
+    transform: scale(1.05);
+}
+
+#btn-save[disabled] {
+    cursor: not-allowed;
+    background-color: #555;
+    color: #999;
+    transform: none;
+}
+
+/* Mensagens de Status */
+#status-message {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+    height: 1
+}
