@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Treinador - Elite dos 4</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="estilos.css">
+    
+</head>
+<body>
+
+    <header>
+        <h1>OS CAMPEÕES E A ELITE DOS 4</h1>
+    </header>
+    <nav>
+        <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="regiao.html">Regiões</a></li>
+                <li><a href="campeoes.html">Campeão</a></li>
+                <li><a href="perfil.html">Meu Perfil</a></li> 
+                <li><a href="Montador_de_Times.html">Montador de Times</a></li> 
+        </ul>
+    </nav>
+    
+    <main class="container">
+
+        <section class="secao-conteudo" id="profile-display-section">
+            <h2>Perfil do Treinador</h2>
+            
+            <div class="profile-card">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" 
+                     alt="Sprite do Treinador" 
+                     id="profile-sprite-display">
+                <h3 id="trainer-name-display">Nome do Treinador</h3>
+            </div>
+
+            <div class="profile-details">
+                <h4>Tipos Favoritos</h4>
+                <div class="tags-container" id="types-display">
+                    <span class="tag-item">Nenhum</span>
+                </div>
+                
+                <h4>Insígnias Conquistadas (Kanto)</h4>
+                <div class="tags-container" id="badges-display">
+                    <span class="tag-item">Nenhuma</span>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <button id="edit-profile-btn" class="profile-main-btn">Editar Perfil</button>
+                <button id="goto-team-builder-btn" class="profile-main-btn">Montador de Times</button>
+            </div>
+        </section>
+        
+        <section class="secao-conteudo" id="profile-edit-section" style="display: none;">
+            <h2>Editar Perfil</h2>
+
+            <form id="profile-edit-form">
+                <div class="form-group">
+                    <label for="trainer-name-input">Nome do Treinador:</label>
+                    <input type="text" id="trainer-name-input" placeholder="Seu nome de treinador">
+                </div>
+
+                <div class="form-group">
+                    <label for="sprite-url-input">URL do Sprite/Foto de Perfil:</label>
+                    <input type="text" id="sprite-url-input" placeholder="https://exemplo.com/imagem.png">
+                </div>
+
+                <div class="form-group">
+                    <label for="types-select">Selecione seus Tipos Favoritos:</label>
+                    <select id="types-select" multiple>
+                        <option value="Normal">Normal</option>
+                        <option value="Fire">Fire (Fogo)</option>
+                        <option value="Water">Water (Água)</option>
+                        <option value="Grass">Grass (Planta)</option>
+                        <option value="Electric">Electric (Elétrico)</option>
+                        <option value="Ice">Ice (Gelo)</option>
+                        <option value="Fighting">Fighting (Lutador)</option>
+                        <option value="Poison">Poison (Veneno)</option>
+                        <option value="Ground">Ground (Terra)</option>
+                        <option value="Flying">Flying (Voador)</option>
+                        <option value="Psychic">Psychic (Psíquico)</option>
+                        <option value="Bug">Bug (Inseto)</option>
+                        <option value="Rock">Rock (Pedra)</option>
+                        <option value="Ghost">Ghost (Fantasma)</option>
+                        <option value="Dragon">Dragon (Dragão)</option>
+                        <option value="Dark">Dark (Sombrio)</option>
+                        <option value="Steel">Steel (Aço)</option>
+                        <option value="Fairy">Fairy (Fada)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="badges-select">Selecione suas Insígnias (Kanto):</label>
+                    <select id="badges-select" multiple>
+                        <option value="Boulder">Boulder (Pedra)</option>
+                        <option value="Cascade">Cascade (Água)</option>
+                        <option value="Thunder">Thunder (Elétrico)</option>
+                        <option value="Rainbow">Rainbow (Planta)</option>
+                        <option value="Soul">Soul (Veneno)</option>
+                        <option value="Marsh">Marsh (Psíquico)</option>
+                        <option value="Volcano">Volcano (Fogo)</option>
+                        <option value="Earth">Earth (Terra)</option>
+                    </select>
+                </div>
+
+                <p id="edit-status-message"></p>
+
+                <div class="edit-actions">
+                    <button type="submit" id="save-profile-btn">Salvar Alterações</button>
+                    <button type="button" id="cancel-edit-btn">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Elite dos 4 - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="perfil.js"></script>
+</body>
+</html> 
