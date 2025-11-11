@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,10 +16,9 @@
     </nav>
   </header>
 
-    <div class="ho">
-      <div class="card p-4">
+  <div class="ho">
+    <div class="card p-4">
       <h3 class="text-center mb-3">Entrar na Conta</h3>
-      <form>
         <div class="mb-3">
           <label for="email" class="form-label">E-mail</label>
           <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
@@ -28,15 +26,16 @@
         <div class="mb-3 position-relative">
           <label for="senha" class="form-label">Senha</label>
           <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" required>
-          <span class="toggle-password" onclick="togglePassword('senha')">🔴</span>  
+          <span class="toggle-password" onclick="togglePassword('senha')" style="cursor: pointer; position: absolute; right: 10px; top: 55%; transform: translateY(-50%);">🔒</span>  
         </div>
         <div class="mb-3 text-end">
           <a href="recuperar-senha.html" class="text-decoration-none">Esqueceu a senha?</a>
         </div>
-        <div class="d-grid">
-          <button type="submit" class="btn btn-primary" onclick="window.location.href='index.html'">Entrar</button>
-        </div>
-      </form>
+        <form onsubmit="logarUsuario(event)"> 
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Entrar</button>
+          </div>
+        </form>
       <hr class="my-4">
       <div class="text-center">
         <p class="mb-0">Novo por aqui? <a href="cadastro.html" class="text-primary">Crie uma conta</a></p>
@@ -49,6 +48,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+  <script src="java.js"></script>
 </body>
 </html>
